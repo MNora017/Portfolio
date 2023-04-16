@@ -1,0 +1,124 @@
+:required {
+    background-color: red;
+}
+
+div.droite, div.gauche {
+    display: block;
+    
+    width:50%; 
+}
+
+div .global img {
+    display: flex;
+    width:50%;
+    border-radius: 0%;
+    display:inline-block;
+}
+
+.taille {
+    max-width: 50%;
+}
+
+/*------------Formulaire de connexion--------------*/
+label {
+    font-family: Arial, Helvetica, sans-serif;
+}
+div .connexion .form-control {
+    padding: 10px;
+    background-color:rebeccapurple;
+    justify-content: center;
+}
+
+/*------------Formulaire de connexion--------------*/
+
+.connexion .php-connexion-form input {
+    padding: 10px 15px;
+}
+
+.connexion .php-connexion-form input, .connexion .php-connexion-form textarea {
+    border-radius: 5px;
+    box-shadow: none;
+    font-size: 14px;
+}
+
+.text-center {
+    padding: 10px 15px;
+    background: #5846f9;
+}
+
+.connexion .php-connexion-form input:focus, .connexion .php-connexion-form textarea:focus {
+    border-color: #5846f9;
+  }
+  .connexion .php-connexion-form input {
+    padding: 10px 15px;
+  }
+  .connexion .php-connexion-form textarea {
+    padding: 12px 15px;
+  }
+  .connexion .php-connexion-form button[type=submit] {
+    background: #5846f9;
+    border: 0;
+    padding: 10px 24px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 5px;
+  }
+  .connexion .php-connexion-form button[type=submit]:hover {
+    background: #7b27d8;
+  }
+
+  .connexion .php-connexion-form {
+    box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
+    padding: 30px;
+    background: #fff;
+  }
+  .connexion .php-connexion-form .error-message {
+    display: none;
+    color: #fff;
+    background: #ed3c0d;
+    text-align: left;
+    padding: 15px;
+    font-weight: 600;
+  }
+  .connexion .php-connexion-form .error-message br + br {
+    margin-top: 25px;
+  }
+  .connexion .php-connexion-form .sent-message {
+    display: none;
+    color: #fff;
+    background: #18d26e;
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+  }
+  .connexion .php-connexion-form .loading {
+    display: none;
+    background: #fff;
+    text-align: center;
+    padding: 15px;
+  }
+  .connexion .php-connexion-form .loading:before {
+    content: "";
+    display: inline-block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px -6px 0;
+    border: 3px solid #18d26e;
+    border-top-color: #eee;
+    -webkit-animation: animate-loading 1s linear infinite;
+    animation: animate-loading 1s linear infinite;
+}
+
+
+    /*
+    #FCEDFA
+    #E5387B
+    #6B558B
+    #373659
+    #121616
+
+#DBC3D5
+#676B8B
+#491749
+      #d67eff #181B28*/

@@ -1,0 +1,747 @@
+
+
+<?php include_once ("../pdo/configPDO.php");
+
+/*
+if(isset($_POST['upload'])) // si formulaire soumis
+{   
+        
+    $file = rand(1000,100000)."-".$_FILES['file']['fichier'];
+        $file_loc = $_FILES['file']['tmp_name'];
+    $file_size = $_FILES['file']['taille'];
+    $file_type = $_FILES['file']['nom'];
+    $folder="upload/";
+    
+    //new file size in KB 
+    $new_size = $file_size/1024;  
+    //new file size in KB 
+    
+    //make file name in lower case 
+    $new_file_name = strtolower($file);
+    //make file name in lower case 
+    
+    $final_file=str_replace(' ','-',$new_file_name);
+    
+    if(move_uploaded_file($file_loc,$folder.$final_file))
+    {
+    $sql="INSERT INTO ajout(id,nom,fichier,taille) VALUES('$final_file','$file_type','$new_size')";
+    mysqli_query($dsn,$sql);
+    
+    echo "Le fichier est bien téléchargé !";           
+    
+    }
+    else
+    {
+    
+    echo "Erreur, veillez recommencer.";
+		
+		}
+	}
+*/
+?>
+
+
+
+<?php include_once ("../pdo/configPDO.php");
+/*
+$valid_extensions = array('jpeg', 'jpg','png'); 
+
+    if ( 0 < $_FILES['file']['error'] ) {
+        echo 'Error: ' . $_FILES['photo']['error'] . '<br>';
+    }
+    else {
+       
+        $code=mt_rand(10,100000);//rename the file name
+        $size= $_FILES['file']['size'];
+        $ext = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
+        if($size > 2097152) //2 mb 1024*1024 bytes
+        {
+            echo json_encode(array("statusCode"=>400,'msg'=>"Image allowd less than 2 mb"));
+        }
+        else if(!in_array($ext, $valid_extensions)) {
+            echo json_encode(array("statusCode"=>400,'msg'=>$ext.' not allowed'));
+        }
+        else{
+           
+            $result = move_uploaded_file($_FILES['photo']['tmp_name'], 'uploads/' . $code.'.'.$ext);
+            echo json_encode(array("statusCode"=>200 ,'code'=>$code));
+        }
+        
+    }*/
+?>
+
+
+<!--
+<!doctype html>
+<html>
+<head lang="en">
+<meta charset="utf-8">
+<title>Ajax File Upload with jQuery and PHP</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+<div class="row">
+
+<div class="col-md-8">
+
+<hr> 
+<input id="uploadImage" type="file" accept="image/*" name="image" class="uploadimg"/>
+<input id="uploadImage1" type="file" accept="image/*" name="image1" class="uploadimg" />
+
+<div id="err"></div>
+</div>
+</div>
+</div>
+<script> 
+    
+    
+$(document).ready(function(){
+    $('.uploadimg').on('change', function() {
+        console.log("test");
+    var file_data = $(this).prop('files')[0];   
+    var form_data = new FormData();
+    var ext = $(this).val().split('.').pop().toLowerCase();
+    if ($.inArray(ext, ['png','jpg','jpeg']) == -1)   {
+        alert("only jpg and png images allowed");
+        return;
+    }  
+    var picsize = (file_data.size);
+    console.log(picsize); //in byte
+    if(picsize > 2097152) //2mb
+        {
+            alert("Image allowd less than 2 mb")
+            return;
+        }
+    form_data.append('file', file_data);   
+    $.ajax({
+        url: 'upload.php', //point to server-side PHP script 
+        dataType: 'text',  // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,                         
+        type: 'post',
+        success: function(res){
+           console.log(res);
+        }
+     });
+});
+})
+
+</script>
+</body></html>-->
+
+
+<?php
+/*
+   if(isset($_FILES['image'])){
+      $errors= array();
+      $file_name = $_FILES['image']['name']; //le fichier téléchargé dans le répertoire temporaire du serveur Web.
+      $file_size =$_FILES['image']['size']; //la taille en octets du fichier téléchargé.
+      $file_tmp =$_FILES['image']['tmp_name']; //le fichier téléchargé dans le répertoire temporaire du serveur Web.
+      $file_type=$_FILES['image']['type']; //le type MIME du fichier téléchargé.
+      $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+      
+      $extensions= array("jpeg","jpg","png");
+      
+      if(in_array($file_ext,$extensions)=== false){
+         $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+      }
+      
+      if($file_size > 2097152){
+         $errors[]='File size must be excately 2 MB';
+      }
+      
+      if(empty($errors)==true){
+         move_uploaded_file($file_tmp,"images/".$file_name);
+         echo "Success";
+      }else{
+         print_r($errors);
+      }
+   }*/
+?>
+
+<?php /*
+// désactive le temps max d'exécution
+set_time_limit(0);
+ 
+// démarrage de la session
+session_start();
+ 
+// vérifie que l'utilisateur est connecté
+if (!isset($_SESSION["user_id"])) {
+    header("HTTP/1.1 403 Forbidden");
+    exit;
+}
+ 
+// on a bien une demande de téléchargement de fichier
+if (empty($_GET["file"])) {
+    header("HTTP/1.1 404 Not Found");
+    exit;
+}
+// le nom doit être un nom de fichier
+if(basename($_GET["file"]) != $_GET["file"]) {
+    header("HTTP/1.1 400 Bad Request");
+    exit;
+}
+$name = $_GET["file"];
+ 
+// vérifie l'existence et l'accès en lecture au fichier
+$filename = dirname(__FILE__)."/../files/".$name;
+if (!is_file($filename) || !is_readable($filename)) {
+    header("HTTP/1.1 404 Not Found");
+    exit;
+}
+$size = filesize($filename);
+ 
+// désactivation compression GZip
+if (ini_get("zlib.output_compression")) {
+    ini_set("zlib.output_compression", "Off");
+}
+ 
+// fermeture de la session
+session_write_close();
+ 
+// désactive la mise en cache
+header("Cache-Control: no-cache, must-revalidate");
+header("Cache-Control: post-check=0,pre-check=0");
+header("Cache-Control: max-age=0");
+header("Pragma: no-cache");
+header("Expires: 0");
+ 
+// force le téléchargement du fichier avec un beau nom
+header("Content-Type: application/force-download");
+header('Content-Disposition: attachment; filename="'.$name.'"');
+ 
+// indique la taille du fichier à télécharger
+header("Content-Length: ".$size);
+ 
+// envoi le contenu du fichier
+readfile($filename);
+*/
+?>
+
+
+
+<?php /*
+if (isset($_GET["url"])){
+    // Téléchargement image
+    $image=$_GET["url"];
+    header('Content-Transfer-Encoding: none');
+    header('Content-Type: application/octetstream; name="'.$image.'"');
+    header('Content-Disposition: attachment; filename="'.$image.'"');
+    header('Content-length: '.filesize($image));
+    header("Pragma: no-cache");
+    header("Cache-Control: must-revalidate, post-check=0, pre-check=0, public");
+    header("Expires: 0");
+    @readfile($image) OR die();
+}         
+//affichage de l'entête du tableau
+echo'<table border="1" align="center"><tr>
+<td>Image</td>
+<td>Nom de l\'image</td>
+<td>Télécharger</td>
+</tr>';
+//nom du répertoire contenant les images à afficher
+$nom_repertoire = 'uploads';
+//on ouvre le repertoire
+$pointeur = opendir($nom_repertoire);
+$i = 0;
+//on les stocke les noms des fichiers des images trouvées, dans un tableau
+while ($fichier = readdir($pointeur)){    
+      if (substr($fichier, -3) == "gif" || substr($fichier, -3) == "jpg" || substr($fichier, -3) == "png"
+    || substr($fichier, -4) == "jpeg" || substr($fichier, -3) == "PNG" || substr($fichier, -3) == "GIF"
+    || substr($fichier, -3) == "JPG")
+      {
+         $tab_image[$i] = $fichier;
+         $i++;    
+      }    
+}
+//on ferme le répertoire
+closedir($pointeur);
+//on trie le tableau par ordre alphabétique
+array_multisort($tab_image, SORT_ASC);
+//affichage des images (en 60 * 60 ici)
+for($j=0;$j<=$i-1;$j++){
+$image ='<img src="'.$nom_repertoire.'/'.$tab_image[$j].'" width="60" height="60">';
+$dl = 'http://'.$_SERVER['SERVER_NAME'].'/'.$nom_repertoire.'/'.$tab_image[$j].'';
+echo'<tr><td align="center">'.$image.'</td>
+    <td align="center">'.$tab_image[$j].'</td>
+    <td align="center"><a href="article.php?url='.$dl.'">Télécharger</a></td>
+    </tr>';    
+}
+echo'</table>';*/
+?>
+
+
+<?php include_once ("../pdo/configPDO.php");
+
+/*
+$dbh = new PDO($dsn, $user, $password);
+$sql = "SELECT * FROM upload";
+;
+    if (isset($_POST, $_POST['id'])) {
+        $sql = $dbh->prepare("SELECT * FROM upload");
+    
+}
+*/
+
+//$sql->bindValue(':id', htmlspecialchars($_GET['id']));
+
+//$sql->execute();
+//$res = $sql->fetch(PDO::FETCH_ASSOC);
+
+//$sql = "SELECT * FROM ajout";
+ /* if ($_FILES["fichier"]["error"] > 0)
+    {
+    echo "Error: " . $_FILES["fichier"]["error"] . "<br
+  />";
+    }
+  else
+    {
+    echo "Fichier à télécharger : " . $_FILES["fichier"]["nom"] .
+  "<br />";
+      echo "Type : " . $_FILES["fichier"]["type"] . "<br />";
+      echo "Taille : " . ($_FILES["fichier"]["taille"] / 1024) . "
+  Kb<br />";
+      echo "Stocké dans : " . $_FILES["fichier"]["tmp_nom"];  }*/
+  ?>
+
+
+<?php /*
+  if ((($_FILES["fichier"]["type"] == "image/gif")
+  || ($_FILES["fichier"]["type"] == "image/jpeg")
+  || ($_FILES["fichier"]["type"] == "image/pjpeg"))
+  && ($_FILES["fichier"]["taille"] < 20000))
+    {
+    if ($_FILES["fichier"]["error"] > 0)
+      {
+      echo "Error: " . $_FILES["fichier"]["error"] . "<br
+  />";
+      }
+    else
+      {
+      echo "Upload: " . $_FILES["fichier"]["nom"] . "<br
+  />";
+      echo "Type: " . $_FILES["fichier"]["type"] . "<br
+  />";
+      echo "Taille: " . ($_FILES["fichier"]["taille"] / 1024) . " Kb<br
+  />";
+      echo "Stored in: " . $_FILES["fichier"]["tmp_nom"];
+      }
+    }
+  else
+    {
+    echo "Invalid fichier";
+    }*/
+  ?>
+
+
+<?php
+ /* if ((($_FILES["fichier"]["type"] == "image/gif")
+  || ($_FILES["fichier"]["type"] == "image/jpeg")
+  || ($_FILES["fichier"]["type"] == "image/pjpeg"))
+  && ($_FILES["fichier"]["size"] < 20000))
+    {
+    if ($_FILES["fichier"]["error"] > 0)
+      {
+      echo "Return Code: " . $_FILES["fichier"]["error"] . "<br/>";
+      }
+    else
+      {
+      echo "Fichier à télécharger : " . $_FILES["fichier"]["nom"] .
+  "<br />";
+      echo "Type: " . $_FILES["fichier"]["type"] . "<br />";
+      echo "Taille: " . ($_FILES["fichier"]["size"] / 1024) . "
+  Kb<br />";
+      echo "Fichier temporaire : " . $_FILES["fichier"]["tmp_nom"] .
+  "<br />";
+   
+      if (file_exists("upload/" . $_FILES["fichier"]["nom"]))
+        {
+        echo " Le fichier".$_FILES["fichier"]["nom"] . "  existe déjà
+  à cette emplacement. ";
+        }
+      else
+        {
+        move_uploaded_file($_FILES["fichier"]["tmp_nom"],
+        "upload/" . $_FILES["fichier"]["nom"]);
+        echo "Enregistré dans : " . "upload/" .
+  $_FILES["fichier"]["nom"];
+        }
+      }
+    }
+  else
+    {
+    echo "Chemin invalide !!";
+    }*/
+  ?>
+
+
+<?php /*
+if (isset($_POST['submit'])) 
+{
+
+$file = $_FILES['file'];
+
+$fileName = $_FILES['file']['name'];
+$fileTmpName = $_FILES['file']['tmp_name'];
+$fileSize = $_FILES['file']['size'];
+$fileError = $_FILES['file']['error'];
+$fileType = $_FILES['file']['type'];
+
+$fileExt = explode('.', $fileName);
+$fileActualExt = strtolower(end($fileExt));
+
+
+
+    //$maxSize = 50000;
+    $validExt = array('.jpg', '.jpeg', '.gif', '.pgn', '.pdf');
+
+    if (in_inarray($fileActualExt, $validExt)) {
+        
+        if ($fileError === 0) {
+
+            if ($fileSize < 1000000) {
+                
+                $fileNameNew = uniqid('', true). "." .$fileActualExt;
+                $fileDestination = 'upload/'.$fileNameNew;
+                move_uploaded_file($fileTmpName, $fileDestination);
+                header("Location: telechargement.php?telechargementReussi");
+            } else {
+                echo "Le fichier est trop gros";
+            }
+            
+        } else {
+            echo "Une erreur est lier au téléchargement du fichier";
+        }
+    }
+else {
+    echo "Vous ne pouvez pas télécharger le fichiers";
+}
+
+/*  
+if ($_FILES['uploaded_file']['error'] > 0) 
+    {
+        echo "Une erreur est survenue lors du transfert";
+        die;
+    }
+
+    $fileSize > $_FILES['uploaded_file']['size'];
+
+    if ($fileSize > $maxSize) 
+    {
+        echo "Le fichier est trop gros !";
+        die;
+    }
+
+    $fileName = $_FILES['uploaded_file']['name'];
+    $fileExt = "." . strtolower(substr(strrchr($fileName, '.'),1));
+
+    if (!in_array($fileExt, $validExt)) 
+    {
+        echo "Le fichier n'est pas une image !";
+        die;
+    }
+    $tmpName = $_FILES['uploaded_file']['tmp_name'];
+    $uniqueName = md5(uniqid(rand(), true));
+    $fileName = "upload/" . $uniqueName . $fileExt;
+    $resultat = move_uploaded_file($tmpName, $fileName);
+
+    if ($resultat) {
+        echo "Transfert terminé !";
+    }
+    
+}
+*/
+?>
+
+<?php include_once ("../pdo/configPDO.php");
+/*
+// Vérifier si le formulaire a été soumis
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Vérifie si le fichier a été uploadé sans erreur.
+    if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
+        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+        $filename = $_FILES["photo"]["name"];
+        $filetype = $_FILES["photo"]["type"];
+        $filesize = $_FILES["photo"]["size"];
+
+        // Vérifie l'extension du fichier
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        if(!array_key_exists($ext, $allowed)) die("Erreur : Veuillez sélectionner un format de fichier valide.");
+
+        // Vérifie la taille du fichier - 5Mo maximum
+        $maxsize = 5 * 1024 * 1024;
+        if($filesize > $maxsize) die("Error: La taille du fichier est supérieure à la limite autorisée.");
+
+        // Vérifie le type MIME du fichier
+        if(in_array($filetype, $allowed)){
+            // Vérifie si le fichier existe avant de le télécharger.
+            if(file_exists("upload/" . $_FILES["photo"]["name"])){
+                echo $_FILES["photo"]["name"] . " existe déjà.";
+            } else{
+                move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/" . $_FILES["photo"]["name"]);
+                echo "Votre fichier a été téléchargé avec succès.";
+                header("Location: satrt.php");
+            } 
+        } else{
+            echo "Error: Il y a eu un problème de téléchargement de votre fichier. Veuillez réessayer."; 
+        }
+    } else{
+        echo "Error: " . $_FILES["photo"]["error"];
+    }
+}*/
+
+?>
+
+
+<?php /*
+  if(!empty($_FILES['uploaded_file']))
+  {
+    $path = "upload/";
+    $path = $path . basename( $_FILES['uploaded_file']['name']);
+echo 'nn';
+    if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
+      echo "The file ".  basename( $_FILES['uploaded_file']['name']). 
+      " has been uploaded";
+    } else{
+        echo "There was an error uploading the file, please try again!";
+    }
+  }else {
+      echo'';
+  }*/
+?>
+
+
+<?php /*
+  if(!empty($_FILES['uploaded_file']))
+  {
+    $path = "upload/";
+    $url = 'https://media.geeksforgeeks.org/wp-content/uploads/geeksforgeeks-6-1.png'; 
+
+$img = '../../assets/image/me.png'; 
+
+// Function to write image into file
+file_put_contents($img, file_get_contents($url));
+
+echo "File downloaded!";
+echo 'j\'ai trouver l\'image !';
+echo '<img src="' .$img. '" alt="">';
+  } */
+?>
+
+
+
+////-------------------------------------------------
+
+
+
+<?php include_once ("../pdo/configPDO.php");
+
+// Constantes
+define('TARGET', '/files/');    // Repertoire cible
+define('MAX_SIZE', 100000);    // Taille max en octets du fichier
+define('WIDTH_MAX', 800);    // Largeur max de l'image en pixels
+define('HEIGHT_MAX', 800);    // Hauteur max de l'image en pixels
+ 
+// Tableaux de donnees
+$tabExt = array('jpg','gif','png','jpeg');    // Extensions autorisees
+$infosImg = array();
+ 
+// Variables
+$extension = '';
+$message = '';
+$nomImage = '';
+ 
+//////Creation du repertoire cible si inexistant
+
+if( !is_dir(TARGET) ) {
+  if( !mkdir(TARGET, 0755) ) {
+    exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous diposiez des droits suffisants pour le faire ou créez le manuellement !');
+  }
+}
+
+/////Script d'upload
+ 
+if(!empty($_POST))
+{
+  // On verifie si le champ est rempli
+  if( !empty($_FILES['fichier']['name']) )
+  {
+    // Recuperation de l'extension du fichier
+    $extension  = pathinfo($_FILES['fichier']['name'], PATHINFO_EXTENSION);
+ 
+    // On verifie l'extension du fichier
+    if(in_array(strtolower($extension),$tabExt))
+    {
+      // On recupere les dimensions du fichier
+      $infosImg = getimagesize($_FILES['fichier']['tmp_name']);
+ 
+      // On verifie le type de l'image
+      if($infosImg[2] >= 1 && $infosImg[2] <= 14)
+      {
+        // On verifie les dimensions et taille de l'image
+        if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['fichier']['tmp_name']) <= MAX_SIZE))
+        {
+          // Parcours du tableau d'erreurs
+          if(isset($_FILES['fichier']['error']) 
+            && UPLOAD_ERR_OK === $_FILES['fichier']['error'])
+          {
+            // On renomme le fichier
+            $nomImage = md5(uniqid()) .'.'. $extension;
+ 
+            // Si c'est OK, on teste l'upload
+            if(move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET.$nomImage))
+            {
+              $message = 'Upload réussi !';
+            }
+            else
+            {
+              // Sinon on affiche une erreur systeme
+              $message = 'Problème lors de l\'upload !';
+            }
+          }
+          else
+          {
+            $message = 'Une erreur interne a empêché l\'uplaod de l\'image';
+          }
+        }
+        else
+        {
+          // Sinon erreur sur les dimensions et taille de l'image
+          $message = 'Erreur dans les dimensions de l\'image !';
+        }
+      }
+      else
+      {
+        // Sinon erreur sur le type de l'image
+        $message = 'Le fichier à uploader n\'est pas une image !';
+      }
+    }
+    else
+    {
+      // Sinon on affiche une erreur pour l'extension
+      $message = 'L\'extension du fichier est incorrecte !';
+    }
+  }
+  else
+  {
+    // Sinon on affiche une erreur pour le champ vide
+    $message = 'Veuillez remplir le formulaire svp !';
+  }
+}
+?>
+
+
+<?php
+/*
+if(isset($_FILES['fichier']))
+{ 
+     $dossier = 'upload/';
+     $fichier = basename($_FILES['fichier']['name']);
+     if(move_uploaded_file($_FILES['fichier']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+     {
+          echo 'Upload effectué avec succès !';
+     }
+     else //Sinon (la fonction renvoie FALSE).
+     {
+          echo 'Echec de l\'upload !';
+     }
+}*/
+?>
+
+<?php
+/*
+//On fait un tableau contenant les extensions autorisées.
+//Comme il s'agit d'un avatar pour l'exemple, on ne prend que des extensions d'images.
+$extensions = array('.png', '.gif', '.jpg', '.jpeg');
+// récupère la partie de la chaine à partir du dernier . pour connaître l'extension.
+$extension = strrchr($_FILES['avatar']['name'], '.');
+//Ensuite on teste
+if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
+{
+     $erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg, txt ou doc...';
+}*/
+?>
+
+<?php     /*      
+if ($_FILES['nom_du_fichier']['error']) {     
+          switch ($_FILES['nom_du_fichier']['error']){     
+                   case 1: // UPLOAD_ERR_INI_SIZE     
+                   echo"Le fichier dépasse la limite autorisée par le serveur (fichier php.ini) !";     
+                   break;     
+                   case 2: // UPLOAD_ERR_FORM_SIZE     
+                   echo "Le fichier dépasse la limite autorisée dans le formulaire HTML !"; 
+                   break;     
+                   case 3: // UPLOAD_ERR_PARTIAL     
+                   echo "L'envoi du fichier a été interrompu pendant le transfert !";     
+                   break;     
+                   case 4: // UPLOAD_ERR_NO_FILE     
+                   echo "Le fichier que vous avez envoyé a une taille nulle !"; 
+                   break;     
+          }     
+}     
+else {     
+ // $_FILES['nom_du_fichier']['error'] vaut 0 soit UPLOAD_ERR_OK     
+ // ce qui signifie qu'il n'y a eu aucune erreur     
+}  */   
+?>
+
+<?PHP /*
+  if(!empty($_FILES['uploaded_file']))
+  {
+    $path = "upload/";
+    $path = $path . basename( $_FILES['uploaded_file']['name']);
+
+    if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
+      echo "The file ".  basename( $_FILES['uploaded_file']['name']). 
+      " has been uploaded";
+    } else{
+        echo "There was an error uploading the file, please try again!";
+    }
+  }*/
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+  <head>
+    <title>Upload d'une image sur le serveur !</title>
+  </head>
+  <body>
+ <?php
+      if( !empty($message) ) 
+      {
+        echo '<p>',"\n";
+        echo "\t\t<strong>", htmlspecialchars($message) ,"</strong>\n";
+        echo "\t</p>\n\n";
+      }
+    ?>
+    <!-- Debut du formulaire -->
+   <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+    <fieldset>
+        <legend>Formulaire</legend>
+          <p>
+            <label for="fichier_a_uploader" title="Recherchez le fichier à uploader !">Envoyer le fichier :</label>
+            <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_SIZE; ?>" />
+            <input name="fichier" type="file" id="fichier_a_uploader" />
+            <input type="submit" name="submit" value="Uploader" />
+          </p>
+      </fieldset>
+    </form>
+    <!-- Fin du formulaire -->
+
+
+    <form enctype="multipart/form-data" action="upload.php" method="POST">
+    <p>Upload your file</p>
+    <input type="file" name="uploaded_file"></input><br />
+    <input type="submit" value="Upload"></input>
+  </form>
+
+  </body>
+</html>
+

@@ -1,0 +1,8 @@
+document.ajax.dyn="Reçu: " + xhr.responseText;
+
+//  Assigner le fichier XML à une variable
+var doc = xhr.responseXML; 
+//  Lire le premier élément avec DOM
+var element = doc.getElementsByTagName('root').item(0);
+//  Copier le contenu dans le formulaire 
+document.ajax.dyn.value= element.firstChild.data;  

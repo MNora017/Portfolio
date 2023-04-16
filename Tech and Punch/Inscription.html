@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+     <!-- Required meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Bootstrap CSS -->
+<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/headers/">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" 
+rel="stylesheet" 
+integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
+crossorigin="anonymous">
+
+<link rel="stylesheet" href="js/Js.js">
+<link rel="stylesheet" href="css/CSS.css">
+    
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<title>Inscription</title>
+<!-- Bootstrap core CSS -->
+<link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+
+</style>
+
+
+<!-- Custom styles for this template -->
+<link href="headers.css" rel="stylesheet">
+
+
+</head>
+
+
+<body >
+    <!-- nabigateur -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+            
+              <a href="Accueil.html" >
+                  <img src="image/Logo_Masque.png" width="65" height="50" class="" alt="">
+              </a>
+           
+           
+         
+      <h2 class="text-center align-middle text-white ">Tech & Punch</h2>
+
+           <div class="end"> 
+               
+
+            <nav class="navbar navbar-dark bg-dark">
+                <div class="container-fluid">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+
+                </div>
+             </nav>
+
+             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+       <a href="Inscription.html">
+<img class=" p-1 m-2  ms-2 me-0  me-auto mb-lg-0" src="image/logo inscription.png" width="45" height="45" >
+</a>
+<a href="Pannier.html">
+<img class="me-0 m-2 " src="image/logo panier.png" width="35" height="35" >
+       </a>      
+ 
+
+
+  
+</div>
+
+
+</div>  </div>
+    </nav>
+
+
+  
+
+
+    <div id="login mb-5">
+        
+        <div  class="container pt-5   mb-5 needs-validation " >
+            <div  style="  padding-left: 15%; padding-right: 15%; padding-top:30px; padding-bottom:10px; border: 3px solid #3f3f77; text-align: start; background: #3f3f77;"> 
+            <div id="login-row" class="row  align-items-center mb-5 needs-validation">
+                
+
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="" method="post">
+                            <h3 class="text-start text-white mb-5">Création d'un compte</h3>
+                
+                        
+                        <div class="row justify-content-between">
+                            <div class="col-sm-5">
+                                <label for="lastName" class="form-label text-white mb-2">Nom :</label>
+                                <input
+                                  type="text"
+                                  class="form-control mb-4 needs-validation"
+                                  id="lastName"
+                                  placeholder="Nom"
+                                    value=""
+                                  required=""
+                                  name="nom"
+                                />
+                                <div class="invalid-feedback">Veuillez entrer un Nom </div>
+                             
+                            </div>
+
+                          <div class="col-sm-5">
+                            <label for="firstName" class="form-label text-white  mb-2">Prénom :</label>
+                            <input
+                              type="text"
+                              class="form-control  mb-4"
+                              id="firstName"
+                              placeholder="Prénom"
+                              required
+                              value=""
+                              name="prenom"
+                            />
+                            <div class="invalid-feedback">Veuillez entrer un Prénom </div>
+                          </div>
+                      
+                          <div class="align-items-center container col-md-6 ">
+                            <label for="cc-expiration" class="text-white form-label">Date de naissance : </label>
+                            <input
+                              type="date"
+                              class="text-center form-control mb-4"
+                              id="cc-expiration"
+                              placeholder=""
+                              required=""
+                              name="card-exp"
+                            />
+                            <div class=" invalid-feedback">Date de naissance requis</div>
+                          </div>
+
+                            <div class="form-group col-12">
+                                <label for="email" class="for label text-white  mb-2">Email : <br></label>
+                                <input type="email" name="email" id="email" placeholder="you@example.com" required class="form-control mb-4">
+                            <div class="invalid-feedback">
+                                Veuillez entrer une adresse e-mail correcte
+                            </div>
+                            </div>
+                            
+                            <div class="row justify-content-between">
+                            <div class="col-sm-6">
+                                
+                                    <label for="password" class="text-white mb-2">Mot de passe (8 characters minimum) :<br> </label> 
+                                    <input type="password" name="password" id="password" minlength="8" maxlength="16" size="8" placeholder="Mot de passe" required class="form-control  mt-2 mb-4">
+                               
+                            </div>
+                       
+                                <div class="col-sm-6">
+                                
+                                    <label for="password" class="text-white  mb-2"> 
+                                    Confirmation du mot de passe  :<br></label>
+                                    <input type="password" name="password" id="password" minlength="8"
+           maxlength="16" size="8" placeholder="Mot de passe" required class="form-control  mt-2 mb-4">
+                                
+                             </div>
+                            </div>
+                              
+                            </div>
+                         </div>
+                           
+                       
+                        <div class="form-group col-12">
+                            <label for="adress" class="for label text-white  mb-2">Adresse : <br></label>
+                            <input type="adress" name="adresse" id="adresse" placeholder="" required class="form-control mb-4">
+                        <div class="invalid-feedback">
+                            Veuillez entrer une adresse
+                        </div>
+                        </div>
+
+                        <div class="row justify-content-between">
+                        <div class="col-sm-5">
+                            <div class="form-group form-label">
+                                <label for="number" class="text-white mb-2">Code postal :<br></label> 
+                                <input type="number" pattern="[0-9]{5}" name="code postal" id="number" required  placeholder="00000" class="form-control  mt-2 mb-4">
+                            <div class="invalid-feedback">
+                                Veuillez entrer un Code postal
+                            </div>
+                        </div>
+                    </div>
+
+                            <div class="col-sm-5">
+                            <div class="form-group">
+                                <label for="text" class="text-white form-label mb-2">Ville :<br></label>
+                                <input type="text" name="text" id="text" placeholder="" required  class="form-control  mt-2 mb-4">
+                             
+                            <div class="invalid-feedback">
+                                Veuillez entrer une ville
+                            </div>
+                        </div>
+                    </div>
+                            
+                        </div>
+                    
+
+                        <div class="form-group col-md-5">
+                            <label for="phone" class="col-sm-6 text-white mb-2">Téléphone :<br></label>
+                            <input type="number" pattern="[0-9]{10}" name="code postal" id="number"required  placeholder="" class="form-control mt-2 mb-4">
+                      <div class="row">     
+                         <div class="invalid-feedback">
+                                Veuillez entrer un numéro de Téléphone
+                            </div>
+                            </div> 
+</div>
+</form>
+                   
+
+<section>
+<div class="align-items-center container form-group justify-content-center align-items-center container col-md-10 mt-4">
+                   
+                   
+
+                      
+                   
+                        
+                             <label  class="  btn btn-light container-fluid text-start active ">
+                <input style="padding: 15px; margin-right: 15px ;" type="checkbox" required autocomplete="off">
+                <h5 class="ms-2 text-center text-dark  "> Je suis pas un robot</h5>
+                     
+
+                    <div class="text-center" id="invalidCheck1Feedback invalid-feedback"> 
+                        Veuillez confirmer le fait que vous n'êtes pas un robot
+                    </div>  
+                </label>
+
+                    <div class="mt-4 text-white form-check">
+                        <label class="form-check-label" for="defaultCheck1"></label> 
+                        <input class="form-check-input" type="checkbox" value="" required id="defaultCheck1">
+                       
+                          J'accepte les conditions (*)
+                        
+                      </div>
+
+                      <div class="form-check text-white">
+                        <label class="form-check-label" for="defaultCheck2"></label> 
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                       
+                            Je souhaite recevoir des informations concernant le site   
+                        
+                      </div>
+              
+                            <div class="mt-3 form-group jumbotron jumbotron-fluid text-center  ">
+                                <div class="wrapper fadeInDown">
+                                    <div id="formContent">
+                      
+                    </div>
+                </div>    
+
+                <a href="Pannier.html">
+             <input  type="submit" role="button" name="Se connecter" class="mt-3 justify-content-center btn btn-lg btn-outline-light fadeIn fourth  btn-md" value="Se connecter" autocomplete="off">
+              </a> </div>    
+                      </div>   
+                    </div>
+                            
+ </section> 
+                
+                
+                                <p style="font-size: x-small;" class="fw-light sm-2 fw-light text-white mt-3">
+                                    (*) : En créant un compte, vous acceptez les Conditions générales de vente Tech and Punch. Veuillez consulter notre Notice Protection de vos Informations Personnelles, notre Notice Cookies et notre Notice Annonces publicitaires basées sur vos centres d’intérêt.
+                                </p>
+                                        
+                            
+                        </form>
+                      </div>  
+            </div>
+        </div>
+   
+    </section>
+    <div id="login mb-5">
+        
+        <div  class="container pt-2   mb-5 needs-validation " >
+            <div  style=" padding-left: 20px; padding-right: 20px; padding-top:30px; padding-bottom:10px; border: 3px solid #3f3f77; text-align: start; background: #3f3f77;"> 
+            <div id="login-row" class="row justify-content-center align-items-center mb-5 needs-validation">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="" method="post">
+                            <h3 class="text-start text-white mb-5">S'identifié</h3>
+                <section>
+
+                    <div class="form-group col-12">
+                        <label for="email" class="for label text-white  mb-2">Email : <br></label>
+                        <input type="email" name="email" id="email" placeholder="you@example.com" required class="form-control mb-4">
+                    <div class="invalid-feedback">
+                        Veuillez entrer une adresse e-mail correcte
+                    </div>
+                    </div>
+                    
+                
+                    <div class="form-group justify-content-center container-fluid align-items-center col-md-9">
+                        <label for="password" class="for label text-white mb-2">Mot de passe :<br></label>
+                        <input type="password" name="password" id="password" placeholder="Mot de passe" required  class="form-control justify-content-center mt-2 mb-5">
+                    
+                        <div class="invalid-feedback">
+                            Veuillez entrer votre mot de passe
+                        </div>
+                     </div>
+                    </div>
+
+                    <div class="form-group jumbotron jumbotron-fluid text-center ">
+                        <div class="wrapper fadeInDown">
+                            <div id="formContent">
+                               
+                              
+                                <a href="Pannier.html">    <label for="submit"></label>  
+                        <input  type="submit" role="button" name="Se connecter" class="justify-content-center border-3 btn btn-lg btn-outline-light  fadeIn fourth  btn-md" value="Se connecter">
+                    </a>
+                   
+                </div></div>    
+                </section>
+
+</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footeur -->
+   
+        <div class="p-3 mb-2 bg-dark text-white">
+        
+           <h4 class="text-start text-white p-3 mt-3 ">Contact </h4><div class="text-center bg-dark col-lg-6 offset-lg-3">
+<h6 class="text-white mb-4">Rejoigniez nous sur les réseaux</h6>
+<picture class="">
+   <a href="https://www.instagram.com/?hl=fr"> <img class="" width="40" height="40" src="image/insta.png" alt=""></a>
+  <a href="https://www.facebook.com/"> <img class="" width="30" height="30" src="image/facebook.png" alt=""></a>
+   <a href=" https://twitter.com/?lang=fr"> <img class="" width="30"height="30" src="image/twiteer.png" alt=""></a> 
+
+</picture>
+           <p class="text-white mt-2">Copyright &copy; 2021 &middot; Tous droits réservés &middot; <a href="Accueil.html" >Tech and Punch</a></p>
+        </div>
+    
+</body>
+</html>
